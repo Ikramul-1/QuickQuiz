@@ -6,4 +6,4 @@ The file should have a header like this:
 Question,Answer,Option1,Option2,Option3,Option4
 ```
 
-Also, the app's using (https://www.papaparse.com/)[PapaParse] for parsing the `.csv`.
+Also, the app's using [PapaParse](https://www.papaparse.com) for parsing the `.csv`.
