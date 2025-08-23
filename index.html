@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickQuiz</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <script src="./modules/papaparse.min.js"></script>
+</head>
+
+<body>
+    <div class="left-panel">
+        <div class="timer">00:00</div>
+        Quiz file (.csv):
+        <input type="file" class="fileUpload">
+        Number of questions: <input type="number" class="maxq" placeholder="Max Questions" value="10" step="5">
+        Time (minutes : seconds)
+        <p><input type="number" class="timer-minutes" placeholder="Minutes" value="10">:
+            <input type="number" class="timer-seconds" placeholder="Seconds" value="00" step="5">
+        </p>
+        <button class="start">Start</button><button class="reset">Reset</button>
+        <div class="stats">
+            <div class="score">Score: 0</div>
+            <div class="qcount">Questions answered: 0</div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="question">
+        </div>
+        <div class="options">
+            <button id="option" class="option1">
+            </button>
+            <button id="option" class="option2">
+            </button>
+            <button id="option" class="option3">
+            </button>
+            <button id="option" class="option4">
+            </button>
+        </div>
+        <button class="next disabled" onclick="loadNewQuestion()">Next</button>
+    </div>
+    <!-- <div class="right-panel"> -->
+    <!-- </div> -->
+</body>
+
+</html>
