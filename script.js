@@ -1,3 +1,4 @@
+// Selecting all the necessary elements from the DOM.
 let fileUpload = document.querySelector('.fileUpload');
 let startButton = document.querySelector('.start');
 let resetButton = document.querySelector('.reset');
@@ -13,20 +14,22 @@ let option2 = document.querySelector('.option2');
 let option3 = document.querySelector('.option3');
 let option4 = document.querySelector('.option4');
 let next = document.querySelector('.next');
-let questions;
-let answers;
+
+// Declaring global variables
+let questions; // Array to hold the questions
+let answers; // Array to hold the answers
 let op1;
 let op2;
 let op3;
 let op4;
-let answer;
-let choice = "";
-let qcount = 0;
+let answer; // Answer to current question
+let choice = ""; // Users choosen option
+let qcount = 0; // Question counter
 let score = 0;
-let maxq;
-let startingTime;
-let time = 1;
-let running = false;
+let maxq; // Maximum number of questions to answer
+let startingTime; // Starting time in seconds
+let time = 1; // Default time (just set to 1 to avoid shenanigans)
+let running = false; // For the timer to know if it should tick
 
 startButton.addEventListener('click', () => {
     readFile();
@@ -51,8 +54,9 @@ option4.addEventListener('click', () => choose(option4));
 
 setInterval(updateTimer, 1000);
 
+// Read the .csv for quizzes and options and answers.
 function readFile() {
-    reset();
+    reset(); // Just felt right to put it here :).
     let reader = new FileReader();
     reader.readAsText(fileUpload.files[0]);
 
@@ -101,10 +105,6 @@ function reset() {
     choice = "";
     next.disabled = true;
     next.className = "next disabled";
-    // option1.style.display = "none";
-    // option2.style.display = "none";
-    // option3.style.display = "none";
-    // option4.style.display = "none";
     option1.innerText = "";
     option2.innerText = "";
     option3.innerText = "";
@@ -115,9 +115,9 @@ function reset() {
     option4.style.backgroundColor = "var(--options-bg)";
     question.innerText = "";
     timerDisplay.innerText = "00:00";
-    // question.innerText = "Please upload a file to start.";
 }
 
+// What happenes when the user clicks on an option.
 function choose(option) {
     choice = option.innerText.slice(3);
     option.disabled = true;
@@ -139,19 +139,24 @@ function choose(option) {
     }
 }
 
+// Function to randomly load a question from the .csv file.
 function loadNewQuestion() {
-    if (questions.length === 0 || qcount >= maxq) {
+    if (questions.length === 0 || qcount >= maxq) { // If there are no more questions left in the array or the max limit is hit.
         choice = "";
         option1.style.display = "none";
         option2.style.display = "none";
         option3.style.display = "none";
         option4.style.display = "none";
         question.innerText = "END OF QUESTIONS";
-    } else {
+        next.disabled = true;
+        next.className = "next disabled";
+        running = false;
+    } else { // Just keep selecting new questions until there are no more left, or the max limit is hit.
         let qaIndex = Math.floor(Math.random() * questions.length);
         question.innerText = questions.splice(qaIndex, 1)[0];
         answer = answers.splice(qaIndex, 1)[0];
 
+        // There might be a better way to do this, but this is the simplest way I could think of :).
         let optionsArray = [
             op1.splice(qaIndex, 1)[0],
             op2.splice(qaIndex, 1)[0],
@@ -186,15 +191,13 @@ function loadNewQuestion() {
 
 /* 
 TODO:
-- [X] Read questions, answers and choices from a file.
-- [X] Improve option generation to ensure that the options are not too different from the answer.
-- [X] Improve the algorithm to ensure that the same question is not loaded twice.
-- [X] Implement a way to track which questions have been loaded.
-- [X] Implement a way to track which questions have been answered correctly.
-- [X] Load a random question that hasn't yet been loaded in `loadNewQuestion()`.
-- [X] Implement a start button to start the quiz.
-- [X] Implement a reset button to reset the quiz.
-- [X] Add a score counter.
-- [X] Style the app.
-- [X] Add a timer.
+- [ ] Add some example questions.
+- [ ] Add a dropdown to select from some example questions.
+- [ ] Add a toggle for randomizing the order of questions.
+- [ ] Add a toggle for randomizing the order of options.
+- [ ] Add a theme selector.
+- [ ] Add sound effects.
+- [ ] Add a way to save the info for each run.
+- [ ] Add a way to load the saved info.
+- [ ] Make this app a PWA.
 */
