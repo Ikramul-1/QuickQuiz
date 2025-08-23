@@ -33,7 +33,6 @@ startButton.addEventListener('click', () => {
     maxq = parseInt(maxqInput.value);
     startingTime = (parseInt(timerMinutes.value) * 60) + parseInt(timerSeconds.value);
     time = startingTime;
-    console.log(time);
     running = true;
     scoreDisplay.innerText = `Score: ${score}`;
     qcountDisplay.innerText = `Questions answered: ${qcount}`;
@@ -85,7 +84,6 @@ function updateTimer() {
         option4.style.display = "none";
         question.innerText = "END OF TIME";
     }
-    console.log(time);
 }
 
 function reset() {
