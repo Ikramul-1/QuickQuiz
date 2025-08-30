@@ -14,6 +14,14 @@ let option2 = document.querySelector('.option2');
 let option3 = document.querySelector('.option3');
 let option4 = document.querySelector('.option4');
 let next = document.querySelector('.next');
+let panel = document.querySelector('.panel');
+let stats = document.querySelector('.stats');
+let timerInputs = document.querySelector('.timer-inputs');
+let mobilePanel = document.querySelector('.mobile-panel');
+let mobileNavButton = document.querySelector('.nav-btn');
+let closePanelBtn = document.querySelector('.closePanel');
+let mobileNavBar = document.querySelector('.mobile-nav-bar');
+let mobileCloseBtn = document.querySelector('.closePanel');
 
 // Declaring global variables
 let questions; // Array to hold the questions
@@ -52,6 +60,44 @@ option2.addEventListener('click', () => choose(option2));
 option3.addEventListener('click', () => choose(option3));
 option4.addEventListener('click', () => choose(option4));
 
+mobileNavButton.addEventListener('click', () => {
+    // Toggle the mobile panel visibility.
+    if (mobilePanel.className == "mobile-panel inactive") {
+        mobilePanel.className = "mobile-panel active";
+    } else {
+        mobilePanel.className = "mobile-panel inactive";
+    }
+});
+
+closePanelBtn.addEventListener('click', () => {
+    mobilePanel.className = "mobile-panel inactive";
+});
+
+// Move the UI elements for different screen sizes.
+function moveElements() {
+    if (window.innerWidth <= 768) {
+        if (!mobileNavBar.contains(stats)) mobileNavBar.appendChild(stats);
+        if (!mobilePanel.contains(fileUpload)) mobilePanel.appendChild(fileUpload);
+        if (!mobilePanel.contains(maxqInput)) mobilePanel.appendChild(maxqInput);
+        if (!mobilePanel.contains(timerInputs)) mobilePanel.appendChild(timerInputs);
+        if (!mobilePanel.contains(startButton)) mobilePanel.appendChild(startButton);
+        if (!mobilePanel.contains(resetButton)) mobilePanel.appendChild(resetButton);
+        if (!mobileNavBar.contains(timerDisplay)) mobileNavBar.appendChild(timerDisplay);
+    } else {
+        if (!panel.contains(fileUpload)) panel.appendChild(fileUpload);
+        if (!panel.contains(maxqInput)) panel.appendChild(maxqInput);
+        if (!panel.contains(timerInputs)) panel.appendChild(timerInputs);
+        if (!panel.contains(startButton)) panel.appendChild(startButton);
+        if (!panel.contains(resetButton)) panel.appendChild(resetButton);
+        if (!panel.contains(stats)) panel.appendChild(stats);
+        if (!panel.contains(timerDisplay)) panel.appendChild(timerDisplay);
+    }
+}
+
+moveElements();
+window.addEventListener('resize', moveElements);
+
+// Update the timer. Just keeps ticking every second. The timer is reset to a "normal" value once the user actually start the quiz.
 setInterval(updateTimer, 1000);
 
 // Read the .csv for quizzes and options and answers.

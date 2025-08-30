@@ -11,13 +11,17 @@
 </head>
 
 <body>
-    <div class="left-panel">
-        <div class="timer">00:00</div>
-        Quiz file (.csv):
+    <div class="mobile-nav-bar">
+        <button class="nav-btn">&gt;</button>
+    </div>
+    <div class="mobile-panel inactive">
+        <button class="closePanel">&lt;</button>
+    </div>
+    <div class="panel">
         <input type="file" class="fileUpload">
-        Number of questions: <input type="number" class="maxq" placeholder="Max Questions" value="10" step="5">
-        Time (minutes : seconds)
-        <p><input type="number" class="timer-minutes" placeholder="Minutes" value="10">:
+        <input type="number" class="maxq" placeholder="Max Questions" value="10" step="5">
+        <p class="timer-inputs">
+            <input type="number" class="timer-minutes" placeholder="Minutes" value="10">:
             <input type="number" class="timer-seconds" placeholder="Seconds" value="00" step="5">
         </p>
         <button class="start">Start</button><button class="reset">Reset</button>
@@ -26,6 +30,7 @@
             <div class="qcount">Questions answered: 0</div>
         </div>
     </div>
+    <div class="timer">00:00</div>
     <div class="main">
         <div class="question">
         </div>
