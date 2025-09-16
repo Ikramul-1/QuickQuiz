@@ -94,6 +94,7 @@ function moveElements() {
     }
 }
 
+// Update the elements position on load and resize. There's prolly a better wau to do this.
 moveElements();
 window.addEventListener('resize', moveElements);
 
