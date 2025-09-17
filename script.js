@@ -17,11 +17,9 @@ let next = document.querySelector('.next');
 let panel = document.querySelector('.panel');
 let stats = document.querySelector('.stats');
 let timerInputs = document.querySelector('.timer-inputs');
-let mobilePanel = document.querySelector('.mobile-panel');
-let mobileNavButton = document.querySelector('.nav-btn');
-let closePanelBtn = document.querySelector('.closePanel');
-let mobileNavBar = document.querySelector('.mobile-nav-bar');
-let mobileCloseBtn = document.querySelector('.closePanel');
+let NavButton = document.querySelector('.nav-btn');
+let NavBar = document.querySelector('.nav-bar');
+let exampleDropdown = document.getElementById('quizDropdown');
 
 // Declaring global variables
 let questions; // Array to hold the questions
@@ -60,43 +58,21 @@ option2.addEventListener('click', () => choose(option2));
 option3.addEventListener('click', () => choose(option3));
 option4.addEventListener('click', () => choose(option4));
 
-mobileNavButton.addEventListener('click', () => {
-    // Toggle the mobile panel visibility.
-    if (mobilePanel.className == "mobile-panel inactive") {
-        mobilePanel.className = "mobile-panel active";
+NavButton.addEventListener('click', () => {
+    // Toggle the panel visibility.
+    if (panel.className == "panel inactive") {
+        // panel.className = "panel";
+        panel.classList.remove('inactive');
+        panel.style.display = 'flex';
     } else {
-        mobilePanel.className = "mobile-panel inactive";
+        // panel.className = "panel inactive";
+        panel.classList.add('inactive');
+        panel.addEventListener('transitionend', function handler() {
+            panel.style.display = 'none';
+            panel.removeEventListener('transitionend', handler);
+        });
     }
 });
-
-closePanelBtn.addEventListener('click', () => {
-    mobilePanel.className = "mobile-panel inactive";
-});
-
-// Move the UI elements for different screen sizes.
-function moveElements() {
-    if (window.innerWidth <= 768) {
-        if (!mobileNavBar.contains(stats)) mobileNavBar.appendChild(stats);
-        if (!mobilePanel.contains(fileUpload)) mobilePanel.appendChild(fileUpload);
-        if (!mobilePanel.contains(maxqInput)) mobilePanel.appendChild(maxqInput);
-        if (!mobilePanel.contains(timerInputs)) mobilePanel.appendChild(timerInputs);
-        if (!mobilePanel.contains(startButton)) mobilePanel.appendChild(startButton);
-        if (!mobilePanel.contains(resetButton)) mobilePanel.appendChild(resetButton);
-        if (!mobileNavBar.contains(timerDisplay)) mobileNavBar.appendChild(timerDisplay);
-    } else {
-        if (!panel.contains(fileUpload)) panel.appendChild(fileUpload);
-        if (!panel.contains(maxqInput)) panel.appendChild(maxqInput);
-        if (!panel.contains(timerInputs)) panel.appendChild(timerInputs);
-        if (!panel.contains(startButton)) panel.appendChild(startButton);
-        if (!panel.contains(resetButton)) panel.appendChild(resetButton);
-        if (!panel.contains(stats)) panel.appendChild(stats);
-        if (!panel.contains(timerDisplay)) panel.appendChild(timerDisplay);
-    }
-}
-
-// Update the elements position on load and resize. There's prolly a better wau to do this.
-moveElements();
-window.addEventListener('resize', moveElements);
 
 // Update the timer. Just keeps ticking every second. The timer is reset to a "normal" value once the user actually start the quiz.
 setInterval(updateTimer, 1000);
@@ -105,7 +81,15 @@ setInterval(updateTimer, 1000);
 function readFile() {
     reset(); // Just felt right to put it here :).
     let reader = new FileReader();
+    // reader.readAsText(fileUpload.files[0]);
     reader.readAsText(fileUpload.files[0]);
+    // console.log(exampleDropdown.value);
+    // console.log(fileUpload.files[0]);
+    // if (fileUpload.files[0] == undefined) {
+    //     reader.readAsText(exampleDropdown.value);
+    // } else {
+    //     reader.readAsText(fileUpload.files[0]);
+    // }
 
     reader.onload = function () {
         let results = Papa.parse(reader.result, { header: false });
