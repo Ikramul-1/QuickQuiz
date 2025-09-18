@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuickQuiz</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
     <script src="./modules/papaparse.min.js"></script>
@@ -26,12 +27,19 @@
         <div class="panel">
             <p>Custom quiz(.csv/.txt):</p>
             <input type="file" class="fileUpload">
-            <!-- <p>OR,</p>
+            <p>OR</p>
             <label for="quizDropdown">Select from examples:</label>
             <select id="quizDropdown" name="dropdownOptions">
-                <option value="./questions/element_questions.csv">element_questions.csv</option>
-                <option value="./questions/test.csv">test.csv</option>
-            </select> -->
+                <option value="">none</option>
+                <option value="./questions/elements_questions.csv">elements_questions.csv</option>
+                <option value="./questions/history_questions.csv">history_questions.csv</option>
+                <option value="./questions/geography_questions.csv">geography_questions.csv</option>
+                <option value="./questions/literature_questions.csv">literature_questions.csv</option>
+                <option value="./questions/meme_questions.csv">meme_questions.csv</option>
+            </select>
+            <p>Randomize Questions - <input type="checkbox" id="randomizeQuestions" name="randomizeQuestions" checked>
+            <p>Shuffle Options - <input type="checkbox" id="shuffleOptions" name="shuffleOptions" checked>
+            </p>
             <p>Number of questions:</p>
             <input type="number" class="maxq" placeholder="Max Questions" value="10" step="5">
             <p>Time (minutes-seconds):</p>
@@ -40,6 +48,12 @@
                 <input type="number" class="timer-seconds" placeholder="Seconds" value="00" step="5">
             </p>
             <button class="start">Start</button><button class="reset">Reset</button>
+            <a href="https://github.com/Ikramul-1/QuickQuiz" class="linkToSource" title="View source code"><svg
+                    fill="#afafaf" width="70px" height="70px" viewBox="0 0 2.1 2.1" xmlns="http://www.w3.org/2000/svg"
+                    data-name="Layer 1">
+                    <path
+                        d="M1.05 0.197a0.875 0.875 0 0 0 -0.277 1.705c0.045 0.007 0.06 -0.018 0.06 -0.041l-0.001 -0.164c-0.22 0.041 -0.277 -0.053 -0.294 -0.102a0.322 0.322 0 0 0 -0.09 -0.123c-0.031 -0.018 -0.073 -0.059 0 -0.06a0.182 0.182 0 0 1 0.134 0.09 0.188 0.188 0 0 0 0.255 0.071 0.182 0.182 0 0 1 0.056 -0.118C0.699 1.435 0.496 1.358 0.496 1.025A0.35 0.35 0 0 1 0.585 0.79 0.322 0.322 0 0 1 0.594 0.557S0.666 0.533 0.834 0.647a0.84 0.84 0 0 1 0.438 0c0.167 -0.115 0.241 -0.09 0.241 -0.09a0.322 0.322 0 0 1 0.008 0.232 0.336 0.336 0 0 1 0.09 0.235c0 0.336 -0.204 0.41 -0.399 0.431a0.21 0.21 0 0 1 0.059 0.162l-0.001 0.241c0 0.024 0.015 0.05 0.06 0.041A0.875 0.875 0 0 0 1.05 0.197" />
+                </svg></a>
         </div>
         <div class="mcq">
             <div class="question">

@@ -20,6 +20,8 @@ let timerInputs = document.querySelector('.timer-inputs');
 let NavButton = document.querySelector('.nav-btn');
 let NavBar = document.querySelector('.nav-bar');
 let exampleDropdown = document.getElementById('quizDropdown');
+let randomizeQuestionsCheckbox = document.getElementById('randomizeQuestions');
+let shuffleOptionsCheckbox = document.getElementById('shuffleOptions');
 
 // Declaring global variables
 let questions; // Array to hold the questions
@@ -78,29 +80,56 @@ NavButton.addEventListener('click', () => {
 setInterval(updateTimer, 1000);
 
 // Read the .csv for quizzes and options and answers.
+// Previous readFile without dropdown selection.
+// function readFile() {
+//     reset(); // Just felt right to put it here :).
+//     let reader = new FileReader();
+//     reader.readAsText(fileUpload.files[0]);
+
+//     reader.onload = function () {
+//         let results = Papa.parse(reader.result, { header: false });
+//         lines = results.data.slice(1);
+//         questions = lines.map(line => line[0]);
+//         answers = lines.map(line => line[1]);
+//         op1 = lines.map(line => line[2]);
+//         op2 = lines.map(line => line[3]);
+//         op3 = lines.map(line => line[4]);
+//         op4 = lines.map(line => line[5]);
+//         loadNewQuestion();
+//     }
+// }
+
+// Experimental readFile with dropdown selection.
 function readFile() {
     reset(); // Just felt right to put it here :).
-    let reader = new FileReader();
-    // reader.readAsText(fileUpload.files[0]);
-    reader.readAsText(fileUpload.files[0]);
-    // console.log(exampleDropdown.value);
-    // console.log(fileUpload.files[0]);
-    // if (fileUpload.files[0] == undefined) {
-    //     reader.readAsText(exampleDropdown.value);
-    // } else {
-    //     reader.readAsText(fileUpload.files[0]);
-    // }
 
-    reader.onload = function () {
-        let results = Papa.parse(reader.result, { header: false });
-        lines = results.data.slice(1);
-        questions = lines.map(line => line[0]);
-        answers = lines.map(line => line[1]);
-        op1 = lines.map(line => line[2]);
-        op2 = lines.map(line => line[3]);
-        op3 = lines.map(line => line[4]);
-        op4 = lines.map(line => line[5]);
-        loadNewQuestion();
+    if (exampleDropdown && exampleDropdown.value && fileUpload.files[0] == undefined) {
+        fetch(exampleDropdown.value).then(response => response.text()).then(exampleQuestions => {
+            let results = Papa.parse(exampleQuestions, { header: false });
+            lines = results.data.slice(1);
+            questions = lines.map(line => line[0]);
+            answers = lines.map(line => line[1]);
+            op1 = lines.map(line => line[2]);
+            op2 = lines.map(line => line[3]);
+            op3 = lines.map(line => line[4]);
+            op4 = lines.map(line => line[5]);
+            loadNewQuestion();
+        });
+    } else if (fileUpload.files[0]) {
+        let reader = new FileReader();
+        reader.readAsText(fileUpload.files[0]);
+
+        reader.onload = function () {
+            let results = Papa.parse(reader.result, { header: false });
+            lines = results.data.slice(1);
+            questions = lines.map(line => line[0]);
+            answers = lines.map(line => line[1]);
+            op1 = lines.map(line => line[2]);
+            op2 = lines.map(line => line[3]);
+            op3 = lines.map(line => line[4]);
+            op4 = lines.map(line => line[5]);
+            loadNewQuestion();
+        }
     }
 }
 
@@ -183,7 +212,13 @@ function loadNewQuestion() {
         next.className = "next disabled";
         running = false;
     } else { // Just keep selecting new questions until there are no more left, or the max limit is hit.
-        let qaIndex = Math.floor(Math.random() * questions.length);
+        let qaIndex;
+        if (randomizeQuestionsCheckbox.checked) {
+            qaIndex = Math.floor(Math.random() * questions.length);
+        } else {
+            qaIndex = 0;
+        }
+
         question.innerText = questions.splice(qaIndex, 1)[0];
         answer = answers.splice(qaIndex, 1)[0];
 
@@ -195,9 +230,11 @@ function loadNewQuestion() {
             op4.splice(qaIndex, 1)[0]
         ];
 
-        for (let i = optionsArray.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
+        if (shuffleOptionsCheckbox.checked) {
+            for (let i = optionsArray.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
+            }
         }
 
         option1.innerText = "A: " + optionsArray[0];
@@ -222,10 +259,10 @@ function loadNewQuestion() {
 
 /* 
 TODO:
-- [ ] Add some example questions.
-- [ ] Add a dropdown to select from some example questions.
-- [ ] Add a toggle for randomizing the order of questions.
-- [ ] Add a toggle for randomizing the order of options.
+- [X] Add a dropdown to select from some example questions.
+- [X] Add some more example questions.
+- [X] Add a toggle for randomizing the order of questions.
+- [X] Add a toggle for randomizing the order of options.
 - [ ] Add a theme selector.
 - [ ] Add sound effects.
 - [ ] Add a way to save the info for each run.
