@@ -20,6 +20,7 @@ let timerInputs = document.querySelector('.timer-inputs');
 let NavButton = document.querySelector('.nav-btn');
 let NavBar = document.querySelector('.nav-bar');
 let exampleDropdown = document.getElementById('quizDropdown');
+let themeSelector = document.getElementById('themeSelector');
 let randomizeQuestionsCheckbox = document.getElementById('randomizeQuestions');
 let shuffleOptionsCheckbox = document.getElementById('shuffleOptions');
 
@@ -38,6 +39,11 @@ let maxq; // Maximum number of questions to answer
 let startingTime; // Starting time in seconds
 let time = 1; // Default time (just set to 1 to avoid shenanigans)
 let running = false; // For the timer to know if it should tick
+
+// Set theme
+const theme = localStorage.getItem('theme') || 'default-dark';
+document.body.className = theme;
+themeSelector.value = theme;
 
 startButton.addEventListener('click', () => {
     readFile();
@@ -76,30 +82,16 @@ NavButton.addEventListener('click', () => {
     }
 });
 
+// Change theme.
+themeSelector.addEventListener('change', () => {
+    document.body.className = themeSelector.value;
+    localStorage.setItem('theme', themeSelector.value);
+});
+
 // Update the timer. Just keeps ticking every second. The timer is reset to a "normal" value once the user actually start the quiz.
 setInterval(updateTimer, 1000);
 
 // Read the .csv for quizzes and options and answers.
-// Previous readFile without dropdown selection.
-// function readFile() {
-//     reset(); // Just felt right to put it here :).
-//     let reader = new FileReader();
-//     reader.readAsText(fileUpload.files[0]);
-
-//     reader.onload = function () {
-//         let results = Papa.parse(reader.result, { header: false });
-//         lines = results.data.slice(1);
-//         questions = lines.map(line => line[0]);
-//         answers = lines.map(line => line[1]);
-//         op1 = lines.map(line => line[2]);
-//         op2 = lines.map(line => line[3]);
-//         op3 = lines.map(line => line[4]);
-//         op4 = lines.map(line => line[5]);
-//         loadNewQuestion();
-//     }
-// }
-
-// Experimental readFile with dropdown selection.
 function readFile() {
     reset(); // Just felt right to put it here :).
 
@@ -182,20 +174,20 @@ function choose(option) {
     choice = option.innerText.slice(3);
     option.disabled = true;
 
-    next.disabled = false;
-    next.className = "next enabled";
     if (choice == answer) {
         qcount += 1;
         score += 1;
         scoreDisplay.innerText = `Score: ${score}`;
         qcountDisplay.innerText = `Questions answered: ${qcount}`;
         option.style.backgroundColor = "var(--correct-color)";
-        option.style.color = "var(--panel-bg)";
+        option.style.color = "var(--options-fg)";
+        next.disabled = false;
+        next.className = "next enabled";
     } else {
         score -= 0.5;
         scoreDisplay.innerText = `Score: ${score}`;
         option.style.backgroundColor = "var(--wrong-color)";
-        option.style.color = "var(--panel-bg)";
+        option.style.color = "var(--options-fg)";
     }
 }
 
@@ -263,7 +255,7 @@ TODO:
 - [X] Add some more example questions.
 - [X] Add a toggle for randomizing the order of questions.
 - [X] Add a toggle for randomizing the order of options.
-- [ ] Add a theme selector.
+- [X] Add a theme selector.
 - [ ] Add sound effects.
 - [ ] Add a way to save the info for each run.
 - [ ] Add a way to load the saved info.

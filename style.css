@@ -6,24 +6,28 @@
 
 /* Variables */
 :root {
-    --bg: #323438;
-    --fg: #eceff4;
-    --correct-color: #a3be8c;
-    --wrong-color: #bf616a;
-    --panel-bg: #131415;
-    --panel-fg: #eceff4;
+    --bg: #323434;
+    --fg: #feffff;
+    --correct-color: #8fde9c;
+    --wrong-color: #df616a;
+    --panel-bg: #151616;
+    --panel-fg: var(--fg);
     --options-fg: var(--panel-bg);
-    --options-bg: #ebcb8b;
-    --question-bg: #81a1c1;
+    --options-bg: #fbdb8f;
+    --question-bg: #81a1f1;
     --question-fg: var(--panel-bg);
     --start-bg: var(--bg);
     --start-fg: var(--correct-color);
     --reset-bg: var(--bg);
     --reset-fg: var(--wrong-color);
-    --next-bg: #8fbcbb;
+    --next-bg: #abdcdb;
     --next-fg: var(--panel-bg);
     --next-disabled-bg: #202020;
     --next-disabled-fg: var(--bg);
+    --timer-fg: var(--next-bg);
+    --nav-btn-bg: var(--timer-fg);
+    --choose-file-bg: var(--bg);
+    --choose-file-fg: var(--next-bg);
     --question-font: 1.8rem;
     --option-font: 1.6rem;
     --status-font: 1rem;
@@ -35,13 +39,162 @@
     --shadow-for-all: 0 0 1.2rem rgba(0, 0, 0, 0.8);
     --transition-time: 0.4s;
     --timer-font: calc(var(--status-font) * 5);
-    --timer-fg: var(--correct-color);
 }
 
 /* tHe DeSiGn (this was really painful) */
 html {
     height: 100%;
     font-size: 16px;
+}
+
+.default-light {
+    --bg: #dedede;
+    --fg: #121212;
+    --correct-color: #83ffa4;
+    --wrong-color: #df616a;
+    --panel-bg: #fdfdff;
+    --panel-fg: var(--fg);
+    --options-fg: var(--panel-fg);
+    --options-bg: #faddbf;
+    --question-bg: #cdddff;
+    --question-fg: var(--panel-fg);
+    --start-fg: var(--fg);
+    --start-bg: var(--correct-color);
+    --reset-fg: var(--fg);
+    --reset-bg: var(--wrong-color);
+    --next-bg: #afdffb;
+    --next-fg: var(--panel-fg);
+    --next-disabled-bg: #202020;
+    --next-disabled-fg: var(--panel-fg);
+    --timer-fg: #233223;
+    --nav-btn-bg: var(--next-bg);
+    --choose-file-bg: var(--next-bg);
+    --choose-file-fg: var(--fg);
+}
+
+.dracula {
+    --bg: #282A36;
+    --fg: #F8F8F2;
+    --correct-color: #50FA7B;
+    --wrong-color: #FF5555;
+    --panel-bg: #44475A;
+    --panel-fg: var(--fg);
+    --options-fg: var(--panel-bg);
+    --options-bg: #8BE9FD;
+    --question-bg: #BD93F9;
+    --question-fg: var(--panel-bg);
+    --start-fg: var(--panel-bg);
+    --start-bg: #FFB86C;
+    --reset-fg: var(--panel-bg);
+    --reset-bg: var(--wrong-color);
+    --next-bg: #F1FA8C;
+    --next-fg: var(--bg);
+    --next-disabled-bg: #202020;
+    --next-disabled-fg: var(--panel-bg);
+    --timer-fg: var(--next-bg);
+    --nav-btn-bg: var(--next-bg);
+    --choose-file-bg: var(--next-bg);
+    --choose-file-fg: var(--panel-bg);
+}
+
+.nord {
+    --bg: #2e3440;
+    --fg: #eceff4;
+    --correct-color: #a3be8c;
+    --wrong-color: #bf616a;
+    --panel-bg: #4c566a;
+    --panel-fg: var(--fg);
+    --options-fg: var(--bg);
+    --options-bg: #ebcb8b;
+    --question-bg: #81a1c1;
+    --question-fg: var(--bg);
+    --start-fg: var(--bg);
+    --start-bg: #d08770;
+    --reset-fg: var(--bg);
+    --reset-bg: var(--wrong-color);
+    --next-bg: #88c0d0;
+    --next-fg: var(--bg);
+    --next-disabled-bg: #202020;
+    --next-disabled-fg: var(--bg);
+    --timer-fg: var(--next-bg);
+    --nav-btn-bg: var(--next-bg);
+    --choose-file-bg: var(--next-bg);
+    --choose-file-fg: var(--bg);
+}
+
+.gruvbox-dark {
+    --bg: #282828;
+    --fg: #fbf1c7;
+    --correct-color: #b8bb26;
+    --wrong-color: #fb4934;
+    --panel-bg: #3c3836;
+    --panel-fg: var(--fg);
+    --options-fg: var(--bg);
+    --options-bg: #d79921;
+    --question-bg: #458588;
+    --question-fg: var(--bg);
+    --start-fg: var(--bg);
+    --start-bg: #fe8019;
+    --reset-fg: var(--bg);
+    --reset-bg: var(--wrong-color);
+    --next-bg: #689d6a;
+    --next-fg: var(--bg);
+    --next-disabled-bg: #202020;
+    --next-disabled-fg: var(--bg);
+    --timer-fg: var(--next-bg);
+    --nav-btn-bg: var(--next-bg);
+    --choose-file-bg: var(--next-bg);
+    --choose-file-fg: var(--bg);
+}
+
+.gruvbox-light {
+    --bg: #ebdbb2;
+    --fg: #282828;
+    --correct-color: #b8bb26;
+    --wrong-color: #fb4934;
+    --panel-bg: #fbf1c7;
+    --panel-fg: var(--fg);
+    --options-fg: var(--fg);
+    --options-bg: #fabd2f;
+    --question-bg: #83a598;
+    --question-fg: var(--fg);
+    --start-fg: var(--fg);
+    --start-bg: #fe8019;
+    --reset-fg: var(--fg);
+    --reset-bg: var(--wrong-color);
+    --next-bg: #689d6a;
+    --next-fg: var(--fg);
+    --next-disabled-bg: #202020;
+    --next-disabled-fg: var(--fg);
+    --timer-fg: var(--next-bg);
+    --nav-btn-bg: var(--next-bg);
+    --choose-file-bg: var(--next-bg);
+    --choose-file-fg: var(--fg);
+}
+
+.onedark {
+    --bg: #282C34;
+    --fg: #ABB2BF;
+    --correct-color: #98C379;
+    --wrong-color: #E06C75;
+    --panel-bg: #3e4452;
+    --panel-fg: var(--fg);
+    --options-fg: var(--bg);
+    --options-bg: #E5C07B;
+    --question-bg: #61AFEF;
+    --question-fg: var(--bg);
+    --start-fg: var(--bg);
+    --start-bg: #C678DD;
+    --reset-fg: var(--bg);
+    --reset-bg: var(--wrong-color);
+    --next-bg: #56B6C2;
+    --next-fg: var(--bg);
+    --next-disabled-bg: #202020;
+    --next-disabled-fg: var(--bg);
+    --timer-fg: var(--next-bg);
+    --nav-btn-bg: var(--next-bg);
+    --choose-file-bg: var(--next-bg);
+    --choose-file-fg: var(--bg);
 }
 
 body {
@@ -94,7 +247,7 @@ body {
     width: 5%;
     margin: 0.5rem;
     /* padding: 1rem; */
-    background-color: var(--bg);
+    background-color: var(--nav-btn-bg);
     color: var(--fg);
     border: none;
     border-radius: var(--border-radius-m);
@@ -185,7 +338,7 @@ body {
 
 .next {
     width: 92%;
-    height: 6%;
+    height: 8%;
     margin: 1.12rem;
     padding: 0.56rem;
     border: none;
@@ -210,8 +363,8 @@ body {
 }
 
 input[type="file"]::file-selector-button {
-    color: var(--next-bg);
-    background-color: var(--bg) !important;
+    color: var(--choose-file-fg);
+    background-color: var(--choose-file-bg) !important;
     border: none;
     padding: 0.56rem;
     border-radius: var(--border-radius-m);
@@ -228,7 +381,7 @@ input[type="file"]::file-selector-button:hover {
 }
 
 input[type="file"] {
-    color: var(--fg);
+    color: var(--panel-fg);
     font-family: var(--font-family);
     font-size: var(--status-font);
 }
@@ -359,6 +512,17 @@ p {
 }
 
 #quizDropdown {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    border: none;
+    border-radius: calc(var(--border-radius-m) / 2);
+    font-family: var(--font-family);
+    font-size: var(--status-font);
+    color: var(--fg);
+    background-color: var(--bg);
+}
+
+#themeSelector {
     margin-top: 0.5rem;
     padding: 0.4rem;
     border: none;
