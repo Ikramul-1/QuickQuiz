@@ -237,18 +237,18 @@ body {
 }
 
 .nav-btn {
-    height: 80%;
+    height: 100%;
     width: 5%;
-    margin: 0.5rem;
+    /* margin: 0.5rem; */
     /* padding: 1rem; */
     background-color: var(--nav-btn-bg);
     color: var(--fg);
     border: none;
-    border-radius: var(--border-radius-m);
+    /* border-radius: var(--border-radius-m); */
     font-size: calc(var(--status-font) * 1);
     font-family: var(--font-family);
     cursor: pointer;
-    box-shadow: var(--shadow-for-all);
+    /* box-shadow: var(--shadow-for-all); */
     transition: var(--transition-time);
 }
 

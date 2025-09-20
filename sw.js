@@ -1,5 +1,6 @@
 const CACHE_NAME = 'quickquiz-cache-v1';
 const urlsToCache = [
+    '/',
     '/index.html',
     '/style.css',
     '/script.js',
@@ -10,6 +11,7 @@ const urlsToCache = [
     'questions/history_questions.csv',
     'questions/literature_questions.csv',
     'questions/meme_questions.csv',
+    'sw.js'
 ];
 
 self.addEventListener('install', (event) => {
