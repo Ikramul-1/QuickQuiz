@@ -248,16 +248,3 @@ function loadNewQuestion() {
         next.className = "next disabled";
     }
 }
-
-/* 
-TODO:
-- [X] Add a dropdown to select from some example questions.
-- [X] Add some more example questions.
-- [X] Add a toggle for randomizing the order of questions.
-- [X] Add a toggle for randomizing the order of options.
-- [X] Add a theme selector.
-- [ ] Add sound effects.
-- [ ] Add a way to save the info for each run.
-- [ ] Add a way to load the saved info.
-- [ ] Make this app a PWA.
-*/

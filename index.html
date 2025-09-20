@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuickQuizzing</title>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="./style.css">
+    <meta name="description" content="QuickQuizzing. A simple quizzing app. Supports custom quizzes in CSV format.">
     <script src="./script.js" defer></script>
     <script src="./modules/papaparse.min.js"></script>
 </head>
@@ -35,8 +37,8 @@
                 <option value="nord">Nord</option>
                 <option value="onedark">One Dark</option>
             </select>
-            <p>Custom quiz(.csv/.txt):</p>
-            <input type="file" class="fileUpload">
+            <label for="fileUpload">Custom quiz(.csv/.txt):</label>
+            <input type="file" id="fileUpload" class="fileUpload">
             <p>OR</p>
             <label for="quizDropdown">Select from examples:</label>
             <select id="quizDropdown" name="dropdownOptions">
@@ -47,13 +49,17 @@
                 <option value="./questions/literature_questions.csv">literature_questions.csv</option>
                 <option value="./questions/meme_questions.csv">meme_questions.csv</option>
             </select>
-            <p>Randomize Questions - <input type="checkbox" id="randomizeQuestions" name="randomizeQuestions" checked>
-            <p>Shuffle Options - <input type="checkbox" id="shuffleOptions" name="shuffleOptions" checked>
+            <p>
+                <label for="randomizeQuestions">Randomize Questions</label> - <input type="checkbox"
+                    id="randomizeQuestions" name="randomizeQuestions" checked>
             </p>
-            <p>Number of questions:</p>
-            <input type="number" class="maxq" placeholder="Max Questions" value="10" step="5">
-            <p>Time (minutes-seconds):</p>
-            <p class="timer-inputs">
+            <p><label for="shuffleOptions">Shuffle Options</label> - <input type="checkbox" id="shuffleOptions"
+                    name="shuffleOptions" checked>
+            </p>
+            <label for="maxq">Number of questions:</label>
+            <input type="number" id="maxq" class="maxq" placeholder="Max Questions" value="10" step="5">
+            <label for="timer-inputs">Time (minutes-seconds):</label>
+            <p id="timer-inputs" class="timer-inputs">
                 <input type="number" class="timer-minutes" placeholder="Minutes" value="10">-
                 <input type="number" class="timer-seconds" placeholder="Seconds" value="00" step="5">
             </p>
@@ -70,17 +76,26 @@
             </div>
             <div class="options">
                 <button id="option" class="option1">
+                    A
                 </button>
                 <button id="option" class="option2">
+                    B
                 </button>
                 <button id="option" class="option3">
+                    C
                 </button>
                 <button id="option" class="option4">
+                    D
                 </button>
             </div>
             <button class="next disabled" onclick="loadNewQuestion()">Next</button>
         </div>
     </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js');
+        }
+    </script>
 </body>
 
 </html>

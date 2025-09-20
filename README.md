@@ -1,6 +1,10 @@
-# A dead simple quizzing app.
+# QuickQuizzing
+A dead simple quizzing app.
 
-![](./ScreenShot2025-09-18%20222719.png)
+![Default look.](img/ScreenShot2025-09-20%20131218.png)
+![](img/ScreenShot2025-09-20%20131306.png)
+![Using Nord theme.](img/ScreenShot2025-09-20%20131445.png)
+![On mobile](img/ScreenShotMobile2025-09-20%20131522.png)
 
 ### Usage
 - Upload a `.csv` or a `.txt` file with your quizzes. This file must contain a header similar to this: 
@@ -20,5 +24,9 @@ Make sure that Option2 is always the answer.
 
 **Note:** Making Option2 the answer isn't necessary. This is just so that Gemini DOES put the answer in the options. The app doesn't check that 😅 (sorry).
 
+Website: https://quickquizzing.netlify.app
+
+Also, sorry for the inconsistency with the repo name and domain. The domain quickquiz wasn't available 🙂, so I changed the things I could. I'm too lazy to move to a new repo 😅.
+
 Modules used:
-- PapaParse: [PapaParse](https://www.papaparse.com) for parsing the `.csv`.
+- [PapaParse](https://www.papaparse.com): For parsing the `.csv` or provided quiz file.
