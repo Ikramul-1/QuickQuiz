@@ -45,6 +45,8 @@ const theme = localStorage.getItem('theme') || 'default-dark';
 document.body.className = theme;
 themeSelector.value = theme;
 
+startButton.disabled = true;
+
 startButton.addEventListener('click', () => {
     readFile();
     maxq = parseInt(maxqInput.value);
@@ -79,6 +81,28 @@ NavButton.addEventListener('click', () => {
             panel.style.display = 'none';
             panel.removeEventListener('transitionend', handler);
         });
+    }
+});
+
+fileUpload.addEventListener('change', () => {
+    if (fileUpload.files[0]) {
+        exampleDropdown.value = "";
+        startButton.classList.remove('disabled');
+        startButton.disabled = false;
+    } else {
+        startButton.className = "start disabled";
+        startButton.disabled = true;
+    }
+});
+
+exampleDropdown.addEventListener('change', () => {
+    if (exampleDropdown.value === "") {
+        startButton.className = "start disabled";
+        startButton.disabled = true;
+    } else {
+        startButton.classList.remove('disabled');
+        startButton.disabled = false;
+        fileUpload.value = "";
     }
 });
 

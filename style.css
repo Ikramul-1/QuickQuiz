@@ -325,11 +325,6 @@ body {
     color: var(--next-bg);
 }
 
-.disabled {
-    color: var(--next-disabled-fg);
-    background-color: var(--next-disabled-bg);
-}
-
 .next {
     width: 92%;
     height: 8%;
@@ -443,6 +438,12 @@ input[type="checkbox"] {
 .reset:hover {
     background-color: var(--reset-fg);
     color: var(--reset-bg);
+}
+
+.disabled {
+    color: var(--next-disabled-fg);
+    background-color: var(--next-disabled-bg);
+    cursor: not-allowed;
 }
 
 .score {
@@ -565,7 +566,7 @@ p {
     }
 
     .nav-btn {
-        width: 10%;
+        width: 15%;
     }
 
     .panel {
